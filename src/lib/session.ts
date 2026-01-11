@@ -10,29 +10,27 @@ export type SessionData = {
   accessToken?: string;
 };
 
-function requireEnv(name: string): string {
-  const value = process.env[name];
-  if (!value || value.trim().length === 0) {
+function getSessionOptions(): SessionOptions {
+  const secret = process.env.SESSION_SECRET;
+  if (!secret || secret.trim().length === 0) {
     throw new Error(
-      `[session] Missing required environment variable: ${name}. ` +
+      `[session] Missing required environment variable: SESSION_SECRET. ` +
         `Add it to .env.local (dev) and Vercel project env vars (prod).`
     );
   }
-  return value;
+
+  return {
+    cookieName: "rival_session",
+    password: secret,
+    cookieOptions: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+    },
+  };
 }
 
-const sessionOptions: SessionOptions = {
-  cookieName: "rival_session",
-  // iron-session requires a strong secret; keep it long (32+ chars)
-  password: requireEnv("SESSION_SECRET"),
-  cookieOptions: {
-    secure: process.env.NODE_ENV === "production",
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-  },
-};
-
 export async function getSession() {
-  return getIronSession<SessionData>(await cookies(), sessionOptions);
+  return getIronSession<SessionData>(await cookies(), getSessionOptions());
 }
