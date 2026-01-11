@@ -7,14 +7,6 @@ assignees: ''
 
 ---
 
----
-name: Task
-about: A small, achievable development task
-title: "[Task] "
-labels: ["task"]
-assignees: []
----
-
 ## Goal
 One clear sentence describing what this task accomplishes.
 
