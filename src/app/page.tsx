@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { H1, Muted } from "@/components/typography";
 
 export default function Home() {
   return (
     <div className="space-y-6">
+      <div className="space-y-2">
+        <H1>Rival</H1>
+        <Muted>Opt-in Valorant stats tracking.</Muted>
+      </div>
+
       <Card>
-        <CardHeader>
-          <CardTitle>Rival</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground">
-            Opt-in Valorant stats tracking.
-          </p>
+        <CardContent className="space-y-4 pt-6">
           <Button asChild>
             <Link href="/login">Connect</Link>
           </Button>
