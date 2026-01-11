@@ -1,13 +1,25 @@
 import { getIronSession, type SessionOptions } from "iron-session";
 import { cookies } from "next/headers";
 
+/**
+ * SessionData defines everything we intentionally store in the session.
+ * This is UI-only state (NOT long-term auth or token storage).
+ */
 export type SessionData = {
+  /**
+   * OAuth state used for CSRF protection during Riot RSO flow
+   */
+  oauthState?: string;
+
+  /**
+   * Logged-in / connected user identity
+   */
   user?: {
     puuid: string;
     gameName?: string;
     tagLine?: string;
+    optedIn?: boolean;
   };
-  accessToken?: string;
 };
 
 function getSessionOptions(): SessionOptions {
@@ -31,6 +43,9 @@ function getSessionOptions(): SessionOptions {
   };
 }
 
+/**
+ * Returns the iron-session for the current request
+ */
 export async function getSession() {
   return getIronSession<SessionData>(await cookies(), getSessionOptions());
 }
