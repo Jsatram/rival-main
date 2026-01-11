@@ -49,6 +49,14 @@ Create a file named `.env.local` in the project root with the following contents
 
 SESSION_SECRET=your-random-32-character-string
 
+### Riot RSO
+- `RIOT_CLIENT_ID` — Riot application client ID
+- `RIOT_CLIENT_SECRET` — Riot application client secret
+- `RIOT_REDIRECT_URI` — OAuth callback URL
+
+### Development
+- `MOCK_RIOT` — Enables mocked Riot authentication for local development
+
 Do not commit `.env.local`. It is ignored by git.
 
 ### Run the development server
