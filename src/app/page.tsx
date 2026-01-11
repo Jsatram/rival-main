@@ -1,24 +1,23 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { H1, Muted } from "@/components/typography";
 
 export default function Home() {
-  const playerName = "PlayerOne";
-
-  const matches: { name: string; kills: number; deaths: number }[] = [];
-
   return (
-    <main className="p-8">
-      {/* Player name */}
-      <h1 className="text-2xl font-bold mb-4">{playerName}</h1>
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <H1>Rival</H1>
+        <Muted>Opt-in Valorant stats tracking.</Muted>
+      </div>
 
-      {/* Match list */}
-      <ul className="space-y-2">
-        {matches.map((match, index) => (
-          <li key={match.name} className="border p-2 rounded">
-            <strong>Match {index + 1}</strong> (Kills: {match.kills}, Deaths:{" "}
-            {match.deaths})
-          </li>
-        ))}
-      </ul>
-    </main>
+      <Card>
+        <CardContent className="space-y-4 pt-6">
+          <Button asChild>
+            <Link href="/login">Connect</Link>
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

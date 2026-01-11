@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rival
 
-## Getting Started
+Rival is an opt-in Valorant stats tracking website.
+Only players who explicitly connect their Riot account will have their stats displayed.
 
-First, run the development server:
+This project is currently in early development and focuses on building a compliant, scalable foundation before full Riot Sign On (RSO) integration.
 
-```bash
+---
+
+## Opt-In Policy (Important)
+
+Rival does not display stats for players who have not opted in.
+
+A player must:
+1. Explicitly connect their Riot account
+2. Grant permission via Riot authentication
+
+If a player has not opted in, their stats and match history are not visible on Rival.
+
+Players can disconnect their Riot account at any time, after which their data will no longer be displayed.
+
+---
+
+## Tech Stack
+
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- iron-session (session management)
+- MongoDB (planned)
+- Riot Games API (pending re-approval and RSO)
+
+---
+
+## Getting Started (Local Development)
+
+### Prerequisites
+- Node.js 18 or newer (latest LTS recommended)
+- npm
+
+### Install dependencies
+
+npm install
+
+### Environment variables
+
+Create a file named `.env.local` in the project root with the following contents:
+
+SESSION_SECRET=your-random-32-character-string
+
+Do not commit `.env.local`. It is ignored by git.
+
+### Run the development server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the app at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
+## Available Routes
 
-To learn more about Next.js, take a look at the following resources:
+- / — Home
+- /search — Player search (stub)
+- /login — Riot account opt-in explanation
+- /account — Connected and disconnected account states
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Authentication Status
 
-## Deploy on Vercel
+Riot Sign On (RSO) is required before production API access.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Current status:
+- Session handling is implemented
+- Login flow is stubbed
+- No Riot API calls are made yet
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The project is intentionally structured to make RSO integration straightforward once access is approved.
+
+---
+
+## Development Notes
+
+- Dev-only API routes live under src/app/api/dev and are ignored by git
+- Global styling is handled via Tailwind CSS and CSS variables
+- Dark mode is enabled by default
+
+---
+
+## Disclaimer
+
+Rival is not affiliated with or endorsed by Riot Games.
+Valorant and Riot Games are trademarks or registered trademarks of Riot Games, Inc.
+
+---
+
+## License
+
+MIT

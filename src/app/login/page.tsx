@@ -1,25 +1,44 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { H1, Muted } from "@/components/typography";
+
 export default function LoginPage() {
   return (
-    <main className="p-8 max-w-2xl mx-auto space-y-4">
-      <h1 className="text-2xl font-bold">Connect your Riot account</h1>
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <H1>Connect your Riot account</H1>
+        <Muted>Rival only shows stats for players who explicitly opt in.</Muted>
+      </div>
 
-      <p>
-        Rival is an <strong>opt-in</strong> stats site. Your match history and
-        gameplay data will only be visible on Rival after you sign in and
-        consent via Riot Sign On (RSO).
-      </p>
+      <Card>
+        <CardHeader>
+          <CardTitle>How this works</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4 text-sm">
+          <p>
+            Rival only displays stats for players who have connected their Riot
+            account. If a player has not opted in, their stats and match history
+            are not visible on Rival.
+          </p>
 
-      <a
-        href="/api/auth/riot/start"
-        className="inline-block px-4 py-2 border rounded"
-      >
-        Sign in with Riot
-      </a>
+          <p>Connecting your Riot account allows Rival to:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Verify your player identity</li>
+            <li>Fetch your Valorant stats and match history</li>
+            <li>Display your stats publicly after you opt in</li>
+          </ul>
 
-      <p className="text-sm opacity-70">
-        You can disconnect any time. We do not display player data for accounts
-        that haven’t opted in.
-      </p>
-    </main>
+          <p>
+            You can disconnect your Riot account at any time from your account
+            settings. Once disconnected, your data will no longer be visible on
+            Rival.
+          </p>
+
+          <Button size="lg" className="mt-4">
+            Connect Riot account
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
