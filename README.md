@@ -47,17 +47,31 @@ npm install
 
 Create a file named `.env.local` in the project root with the following contents:
 
-SESSION_SECRET=your-random-32-character-string
+`SESSION_SECRET`= your-random-32-character-string
+`DATABASE_URL` = postgresql://user:password@localhost:5432/rival
 
 ### Riot RSO
-- `RIOT_CLIENT_ID` — Riot application client ID
-- `RIOT_CLIENT_SECRET` — Riot application client secret
-- `RIOT_REDIRECT_URI` — OAuth callback URL
+- `RIOT_CLIENT_ID` = Riot application client ID
+- `RIOT_CLIENT_SECRET` = Riot application client secret
+- `RIOT_REDIRECT_URI` = OAuth callback URL
 
 ### Development
-- `MOCK_RIOT` — Enables mocked Riot authentication for local development
+- `MOCK_RIOT` = Enables mocked Riot authentication for local development
 
 Do not commit `.env.local`. It is ignored by git.
+
+### Local Database (Postgres via Docker)
+
+docker run --name rival-postgres \
+  -e POSTGRES_USER=rival \
+  -e POSTGRES_PASSWORD=rival \
+  -e POSTGRES_DB=rival \
+  -p 5432:5432 \
+  -d postgres:16
+
+### Apply schema:
+
+Get-Content sql/001_players.sql | docker exec -i rival-postgres psql -U rival -d rival
 
 ### Run the development server
 
@@ -75,6 +89,9 @@ http://localhost:3000
 - /search — Player search (stub)
 - /login — Riot account opt-in explanation
 - /account — Connected and disconnected account states
+- /api/auth/riot/start
+- /api/auth/riot/callback
+- /api/auth/riot/disconnect
 
 ---
 
@@ -96,6 +113,7 @@ The project is intentionally structured to make RSO integration straightforward 
 - Dev-only API routes live under src/app/api/dev and are ignored by git
 - Global styling is handled via Tailwind CSS and CSS variables
 - Dark mode is enabled by default
+- Database is the source of truth for opt-in enforcement
 
 ---
 
