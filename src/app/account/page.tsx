@@ -41,13 +41,15 @@ export default async function AccountPage() {
               <div className="font-medium">
                 {user.gameName ?? "Player"}#{user.tagLine ?? "----"}
               </div>
+
               <div className="text-muted-foreground mt-2">PUUID</div>
               <div className="font-mono text-xs break-all">{user.puuid}</div>
             </div>
 
-            <form action="/api/auth/logout" method="post">
+            {/* 🔴 THIS IS THE IMPORTANT CHANGE */}
+            <form action="/api/auth/riot/disconnect" method="post">
               <Button variant="secondary" type="submit">
-                Disconnect / Logout
+                Disconnect / Opt out
               </Button>
             </form>
 
