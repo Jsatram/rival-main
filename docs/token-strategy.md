@@ -160,8 +160,6 @@ On disconnect:
 
 ## Open Questions (Pending Riot)
 
-ha
-
 - Refresh token availability and lifetimes
 - Scope requirements for Valorant stats endpoints
 - Whether token revocation endpoint exists/required for RSO apps
