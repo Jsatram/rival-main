@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { runMatchInsertTest } from "../../dev/matchInsert.test";
+import { runMatchInsertTest } from "../../../../lib/matchInsert.test";
 
 export async function GET() {
   // Safety: prevent accidental use in production
