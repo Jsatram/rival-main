@@ -1,0 +1,415 @@
+{
+  "version": 1,
+  "label": "unorthodox-20",
+  "player": {
+    "puuid": "fixture-puuid-unorthodox",
+    "gameName": "FixtureWeird",
+    "tagLine": "NA1",
+    "declaredRole": "sentinel"
+  },
+  "matches": [
+    {
+      "matchId": "uno-001",
+      "playedAt": "2025-02-01T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Ascent",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 28,
+        "deaths": 19,
+        "assists": 2,
+        "acs": 310,
+        "adr": 175,
+        "hsPct": 31,
+        "firstKills": 8,
+        "firstDeaths": 3,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 1
+      }
+    },
+    {
+      "matchId": "uno-002",
+      "playedAt": "2025-02-02T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Bind",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 26,
+        "deaths": 20,
+        "assists": 1,
+        "acs": 295,
+        "adr": 168,
+        "hsPct": 30,
+        "firstKills": 7,
+        "firstDeaths": 4,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+    {
+      "matchId": "uno-003",
+      "playedAt": "2025-02-03T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Haven",
+      "agent": "Jett",
+      "stats": {
+        "kills": 30,
+        "deaths": 22,
+        "assists": 1,
+        "acs": 320,
+        "adr": 180,
+        "hsPct": 33,
+        "firstKills": 9,
+        "firstDeaths": 5,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+    {
+      "matchId": "uno-004",
+      "playedAt": "2025-02-04T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Split",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 24,
+        "deaths": 21,
+        "assists": 2,
+        "acs": 285,
+        "adr": 165,
+        "hsPct": 29,
+        "firstKills": 7,
+        "firstDeaths": 4,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 1
+      }
+    },
+    {
+      "matchId": "uno-005",
+      "playedAt": "2025-02-05T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Lotus",
+      "agent": "Jett",
+      "stats": {
+        "kills": 32,
+        "deaths": 23,
+        "assists": 1,
+        "acs": 330,
+        "adr": 185,
+        "hsPct": 34,
+        "firstKills": 10,
+        "firstDeaths": 5,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+
+    {
+      "matchId": "uno-006",
+      "playedAt": "2025-02-06T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Ascent",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 27,
+        "deaths": 19,
+        "assists": 2,
+        "acs": 305,
+        "adr": 172,
+        "hsPct": 31,
+        "firstKills": 8,
+        "firstDeaths": 3,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 1
+      }
+    },
+    {
+      "matchId": "uno-007",
+      "playedAt": "2025-02-07T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Bind",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 25,
+        "deaths": 20,
+        "assists": 1,
+        "acs": 292,
+        "adr": 167,
+        "hsPct": 30,
+        "firstKills": 7,
+        "firstDeaths": 4,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+    {
+      "matchId": "uno-008",
+      "playedAt": "2025-02-08T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Haven",
+      "agent": "Jett",
+      "stats": {
+        "kills": 29,
+        "deaths": 22,
+        "assists": 1,
+        "acs": 318,
+        "adr": 179,
+        "hsPct": 33,
+        "firstKills": 9,
+        "firstDeaths": 5,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+    {
+      "matchId": "uno-009",
+      "playedAt": "2025-02-09T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Split",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 23,
+        "deaths": 21,
+        "assists": 2,
+        "acs": 282,
+        "adr": 164,
+        "hsPct": 29,
+        "firstKills": 7,
+        "firstDeaths": 4,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 1
+      }
+    },
+    {
+      "matchId": "uno-010",
+      "playedAt": "2025-02-10T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Lotus",
+      "agent": "Jett",
+      "stats": {
+        "kills": 31,
+        "deaths": 23,
+        "assists": 1,
+        "acs": 328,
+        "adr": 184,
+        "hsPct": 34,
+        "firstKills": 10,
+        "firstDeaths": 5,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+
+    {
+      "matchId": "uno-011",
+      "playedAt": "2025-02-11T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Ascent",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 28,
+        "deaths": 19,
+        "assists": 2,
+        "acs": 310,
+        "adr": 175,
+        "hsPct": 31,
+        "firstKills": 8,
+        "firstDeaths": 3,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 1
+      }
+    },
+    {
+      "matchId": "uno-012",
+      "playedAt": "2025-02-12T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Bind",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 26,
+        "deaths": 20,
+        "assists": 1,
+        "acs": 295,
+        "adr": 168,
+        "hsPct": 30,
+        "firstKills": 7,
+        "firstDeaths": 4,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+    {
+      "matchId": "uno-013",
+      "playedAt": "2025-02-13T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Haven",
+      "agent": "Jett",
+      "stats": {
+        "kills": 30,
+        "deaths": 22,
+        "assists": 1,
+        "acs": 320,
+        "adr": 180,
+        "hsPct": 33,
+        "firstKills": 9,
+        "firstDeaths": 5,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+    {
+      "matchId": "uno-014",
+      "playedAt": "2025-02-14T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Split",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 24,
+        "deaths": 21,
+        "assists": 2,
+        "acs": 285,
+        "adr": 165,
+        "hsPct": 29,
+        "firstKills": 7,
+        "firstDeaths": 4,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 1
+      }
+    },
+    {
+      "matchId": "uno-015",
+      "playedAt": "2025-02-15T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Lotus",
+      "agent": "Jett",
+      "stats": {
+        "kills": 32,
+        "deaths": 23,
+        "assists": 1,
+        "acs": 330,
+        "adr": 185,
+        "hsPct": 34,
+        "firstKills": 10,
+        "firstDeaths": 5,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+
+    {
+      "matchId": "uno-016",
+      "playedAt": "2025-02-16T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Ascent",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 27,
+        "deaths": 19,
+        "assists": 2,
+        "acs": 305,
+        "adr": 172,
+        "hsPct": 31,
+        "firstKills": 8,
+        "firstDeaths": 3,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 1
+      }
+    },
+    {
+      "matchId": "uno-017",
+      "playedAt": "2025-02-17T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Bind",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 25,
+        "deaths": 20,
+        "assists": 1,
+        "acs": 292,
+        "adr": 167,
+        "hsPct": 30,
+        "firstKills": 7,
+        "firstDeaths": 4,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+    {
+      "matchId": "uno-018",
+      "playedAt": "2025-02-18T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Haven",
+      "agent": "Jett",
+      "stats": {
+        "kills": 29,
+        "deaths": 22,
+        "assists": 1,
+        "acs": 318,
+        "adr": 179,
+        "hsPct": 33,
+        "firstKills": 9,
+        "firstDeaths": 5,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    },
+    {
+      "matchId": "uno-019",
+      "playedAt": "2025-02-19T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Split",
+      "agent": "Reyna",
+      "stats": {
+        "kills": 23,
+        "deaths": 21,
+        "assists": 2,
+        "acs": 282,
+        "adr": 164,
+        "hsPct": 29,
+        "firstKills": 7,
+        "firstDeaths": 4,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 1
+      }
+    },
+    {
+      "matchId": "uno-020",
+      "playedAt": "2025-02-20T00:00:00.000Z",
+      "queue": "competitive",
+      "map": "Lotus",
+      "agent": "Jett",
+      "stats": {
+        "kills": 31,
+        "deaths": 23,
+        "assists": 1,
+        "acs": 328,
+        "adr": 184,
+        "hsPct": 34,
+        "firstKills": 10,
+        "firstDeaths": 5,
+        "plants": 0,
+        "defuses": 0,
+        "clutchesWon": 0
+      }
+    }
+  ]
+}

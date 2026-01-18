@@ -1,0 +1,258 @@
+# Project Epics — EloWars / Rival
+
+This document is the canonical high-level roadmap for the project.
+Each epic represents a meaningful user-facing capability and answers one core question.
+Epics are intentionally scoped to prevent overbuilding and loss of focus.
+
+This file exists to preserve context across development cycles and conversations.
+
+---
+
+## Epic 0 — Foundation & Trust ✅
+
+### Purpose
+
+Establish a legitimate, secure, and compliant application foundation.
+
+### Core Question
+
+Can users safely authenticate and trust the application with their data?
+
+### Scope
+
+- Application scaffolding
+- Environment configuration
+- Session management
+- Riot Sign-On (RSO) groundwork
+- Opt-in concept established (policy + intent)
+
+### Explicit Non-Goals
+
+- No gameplay data ingestion
+- No insights
+- No public profiles
+
+### Outcome
+
+The application is real, secure, and ready to integrate with Riot services.
+
+---
+
+## Epic 1 — Player Identity & Data Ingestion ✅ (Mocked)
+
+### Purpose
+
+Create a persistent player identity and safely ingest gameplay data.
+
+### Core Question
+
+Can the system reliably build and maintain a player’s historical data over time?
+
+### Scope
+
+- Project-level user account
+- Linked Riot account (PUUID-based)
+- Explicit opt-in persistence
+- Canonical match data model
+- Match ingestion pipeline (fixture-based until Riot production access)
+- Reprocessing safety (raw data retained)
+
+### Riot Dependency
+
+- Full completion requires Riot production access
+- Architecture and logic are designed to work without refactor once access is granted
+
+### Explicit Non-Goals
+
+- No insights
+- No interpretation
+- No UI polish
+
+### Outcome
+
+The system can confidently say: “This is an accurate record of how this player plays.”
+
+---
+
+## Epic 2 — Insight Engine (Signals & Archetypes) 🔄
+
+### Purpose
+
+Transform raw stats into interpretable, trustworthy insights.
+
+### Core Question
+
+Can the system explain how someone plays — not just what happened?
+
+### Scope
+
+- Signal definitions (e.g. aggression, survivability, team value, consistency)
+- Normalization and percentile logic
+- Archetype scoring (no hard buckets)
+- Role fit analysis (declared vs expressed role)
+- Unorthodox / risk–return detection
+- Core analysis primitives (pure, tested functions)
+
+### Design Principles
+
+- Explainability over complexity
+- Scores over labels
+- Confidence indicators required
+- Unorthodox ≠ wrong; outcome matters
+
+### Explicit Non-Goals
+
+- No matchmaking
+- No social features
+- No ML pipelines
+
+### Outcome
+
+The system can explain player behavior in a way that feels fair and accurate.
+
+---
+
+## Epic 3 — Player Profile Experience 🔄
+
+### Purpose
+
+Make insights understandable, trustworthy, and shareable.
+
+### Core Question
+
+Can a user understand themselves in under one minute?
+
+### Scope
+
+- Player profile page
+- Identity panel (archetypes + role fit)
+- Insight cards (summary, evidence, confidence, action)
+- Minimal trend visualizations
+- Opt-in and privacy UX
+- Beta labeling and disclaimers
+
+### Explicit Non-Goals
+
+- No messaging
+- No leaderboards
+- No advanced match breakdown UI
+
+### Outcome
+
+A profile users would confidently share with others.
+
+---
+
+## Epic 4 — Playstyle Classification Refinement
+
+### Purpose
+
+Increase accuracy and confidence of classifications through feedback and iteration.
+
+### Core Question
+
+Do classifications remain trustworthy as edge cases appear?
+
+### Scope
+
+- Confidence modeling
+- Primary + secondary archetypes
+- Expert feedback hooks
+- Self-perception vs data comparison
+- Disagreement tracking
+
+### Outcome
+
+Classifications feel nuanced, defensible, and respectful of player identity.
+
+---
+
+## Epic 5 — Compatibility Signals
+
+### Purpose
+
+Lay groundwork for teammate discovery without becoming a social app.
+
+### Core Question
+
+Can the system suggest who might play well together?
+
+### Scope
+
+- Compatibility heuristics
+- Role overlap detection
+- Synergy and conflict signals
+- Read-only recommendations
+
+### Explicit Non-Goals
+
+- No chat
+- No friend system
+- No matchmaking queues
+
+### Outcome
+
+Players gain insight into potential teammate fit.
+
+---
+
+## Epic 6 — Social Discovery (Carefully Scoped)
+
+### Purpose
+
+Enable player connection while keeping the product analytical.
+
+### Core Question
+
+Can players connect without Rival becoming a chat platform?
+
+### Scope
+
+- Opt-in discovery
+- Profile sharing
+- External contact links (Discord, etc.)
+
+### Outcome
+
+Connections happen off-platform; Rival remains focused.
+
+---
+
+## Epic 7 — Retention & Expansion
+
+### Purpose
+
+Make the product habit-forming and extensible.
+
+### Core Question
+
+Why would users keep coming back?
+
+### Scope
+
+- Weekly summaries
+- Improvement tracking
+- Light notifications
+- Multi-game groundwork
+
+### Outcome
+
+Rival becomes part of a player’s long-term improvement loop.
+
+---
+
+## Release Strategy
+
+- Initial release will be a **Closed Beta**
+- Beta explicitly labeled across UI
+- Feedback and disagreement are expected and encouraged
+- Exit from beta defined by insight accuracy and trust metrics
+
+---
+
+## Guiding Principles
+
+- No epic depends on a future epic to be useful
+- Interpretation must always be explainable
+- Opt-in and user consent are non-negotiable
+- Small, strong releases over speculative scale
