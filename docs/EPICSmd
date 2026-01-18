@@ -1,4 +1,4 @@
-# Project Epics — EloWars / Rival
+# Project Epics — Rival
 
 This document is the canonical high-level roadmap for the project.
 Each epic represents a meaningful user-facing capability and answers one core question.
@@ -38,191 +38,230 @@ The application is real, secure, and ready to integrate with Riot services.
 
 ---
 
-## Epic 1 — Player Identity & Data Ingestion ✅ (Mocked)
+## Epic 1 — Player Identity & Opt-In ✅
 
 ### Purpose
 
-Create a persistent player identity and safely ingest gameplay data.
+Create a persistent player identity and explicit consent model.
 
 ### Core Question
 
-Can the system reliably build and maintain a player’s historical data over time?
+Can the system clearly know _who_ a player is and whether their data may be used?
 
 ### Scope
 
-- Project-level user account
+- Project-level user identity
 - Linked Riot account (PUUID-based)
 - Explicit opt-in persistence
-- Canonical match data model
-- Match ingestion pipeline (fixture-based until Riot production access)
-- Reprocessing safety (raw data retained)
-
-### Riot Dependency
-
-- Full completion requires Riot production access
-- Architecture and logic are designed to work without refactor once access is granted
+- Opt-out handling
+- Identity utilities used across the app
 
 ### Explicit Non-Goals
 
 - No insights
-- No interpretation
-- No UI polish
+- No analysis
+- No public-facing stats
 
 ### Outcome
 
-The system can confidently say: “This is an accurate record of how this player plays.”
+The system can confidently say: “This player has opted in, and we may process their data.”
 
 ---
 
-## Epic 2 — Insight Engine (Signals & Archetypes) 🔄
+## Epic 1.5 — Snapshot Persistence Bridge ✅
 
 ### Purpose
 
-Transform raw stats into interpretable, trustworthy insights.
+Bridge ingestion and analysis without committing to full background processing.
 
 ### Core Question
 
-Can the system explain how someone plays — not just what happened?
+Can we persist computed insight snapshots for fast, stable UI reads?
 
 ### Scope
 
-- Signal definitions (e.g. aggression, survivability, team value, consistency)
-- Normalization and percentile logic
-- Archetype scoring (no hard buckets)
-- Role fit analysis (declared vs expressed role)
-- Unorthodox / risk–return detection
-- Core analysis primitives (pure, tested functions)
+- Minimal match index persistence
+- Snapshot-based profile storage
+- Deterministic recompute tooling
+- Internal-only sync and recompute endpoints
+- No background workers
+
+### Explicit Non-Goals
+
+- No full match payload storage
+- No live refresh
+- No scheduling system
+
+### Outcome
+
+The UI can render real analysis results without recomputation or ingestion depth.
+
+---
+
+## Epic 2 — Analysis Core (Signals & Archetypes) ✅
+
+### Purpose
+
+Transform gameplay summaries into interpretable, trustworthy insights.
+
+### Core Question
+
+Can the system explain _how_ someone plays — not just what happened?
+
+### Scope
+
+- Signal computation (combat impact, opening duels, objective play, etc.)
+- Deterministic scoring (0–100)
+- Evidence generation
+- Confidence modeling
+- Archetype scoring (primary + secondary)
+- Role fit analysis (declared vs expressed)
+- Unorthodox / deviation detection
+- Pure, tested analysis primitives
 
 ### Design Principles
 
 - Explainability over complexity
-- Scores over labels
-- Confidence indicators required
-- Unorthodox ≠ wrong; outcome matters
+- Scores over hard labels
+- Confidence required for all interpretations
+- Unorthodox ≠ wrong
 
 ### Explicit Non-Goals
 
 - No matchmaking
-- No social features
 - No ML pipelines
+- No social features
 
 ### Outcome
 
-The system can explain player behavior in a way that feels fair and accurate.
+The system can explain player behavior in a way that feels fair, grounded, and defensible.
 
 ---
 
-## Epic 3 — Player Profile Experience 🔄
+## Epic 3 — Player Profile Experience (Insights UI) ✅
 
 ### Purpose
 
-Make insights understandable, trustworthy, and shareable.
+Make analysis understandable, trustworthy, and readable at a glance.
 
 ### Core Question
 
-Can a user understand themselves in under one minute?
+Can a user understand their playstyle in under one minute?
 
 ### Scope
 
 - Player profile page
-- Identity panel (archetypes + role fit)
-- Insight cards (summary, evidence, confidence, action)
-- Minimal trend visualizations
-- Opt-in and privacy UX
-- Beta labeling and disclaimers
+- Signals rendering (score, evidence, confidence)
+- Archetype summary panel
+- Role fit panel
+- Unorthodox callout
+- Confidence & data window messaging
+- Responsive, trust-first UI
+- Snapshot-only reads (no compute in UI)
 
 ### Explicit Non-Goals
 
-- No messaging
+- No match history
 - No leaderboards
-- No advanced match breakdown UI
+- No messaging or social features
+- No live recompute
 
 ### Outcome
 
-A profile users would confidently share with others.
+A profile users can trust, understand, and confidently share.
 
 ---
 
-## Epic 4 — Playstyle Classification Refinement
+## Epic 4 — Match History & Match Detail (Defined Before Ingestion) 🧭
 
 ### Purpose
 
-Increase accuracy and confidence of classifications through feedback and iteration.
+Provide transparent access to the matches behind a player’s stats.
 
 ### Core Question
 
-Do classifications remain trustworthy as edge cases appear?
+Can users explore their match history in a way that validates and complements analysis?
 
 ### Scope
 
-- Confidence modeling
-- Primary + secondary archetypes
-- Expert feedback hooks
-- Self-perception vs data comparison
-- Disagreement tracking
-
-### Outcome
-
-Classifications feel nuanced, defensible, and respectful of player identity.
-
----
-
-## Epic 5 — Compatibility Signals
-
-### Purpose
-
-Lay groundwork for teammate discovery without becoming a social app.
-
-### Core Question
-
-Can the system suggest who might play well together?
-
-### Scope
-
-- Compatibility heuristics
-- Role overlap detection
-- Synergy and conflict signals
-- Read-only recommendations
+- Match history route and page
+- Public read-only match list API
+- Rendering of available match index data
+- Alignment messaging with analysis snapshot window
+- Match detail route (stub, structure only)
+- Navigation between profile and matches
 
 ### Explicit Non-Goals
 
-- No chat
-- No friend system
-- No matchmaking queues
+- No deep per-round breakdowns
+- No advanced filters or charts
+- No Riot ingestion logic in UI
 
 ### Outcome
 
-Players gain insight into potential teammate fit.
+Users can see _what data_ their insights are based on, building trust and clarity.
 
 ---
 
-## Epic 6 — Social Discovery (Carefully Scoped)
+## Epic 5 — Full Ingestion & Recompute Pipeline 🔒
 
 ### Purpose
 
-Enable player connection while keeping the product analytical.
+Ingest real Riot match data and keep player profiles up to date.
 
 ### Core Question
 
-Can players connect without Rival becoming a chat platform?
+Can the system reliably ingest, store, and refresh real gameplay data at scale?
 
 ### Scope
 
-- Opt-in discovery
-- Profile sharing
-- External contact links (Discord, etc.)
+- Riot API integration
+- Full match payload ingestion
+- Background recompute jobs
+- Snapshot refresh policies
+- Rate-limit handling
+- Failure recovery
+
+### Explicit Non-Goals
+
+- No UI redesign
+- No new insight types
 
 ### Outcome
 
-Connections happen off-platform; Rival remains focused.
+Rival becomes a live, continuously updating stats platform.
 
 ---
 
-## Epic 7 — Retention & Expansion
+## Epic 6 — Advanced Analysis & Refinement (Future)
 
 ### Purpose
 
-Make the product habit-forming and extensible.
+Refine insight accuracy as edge cases and real data scale appear.
+
+### Core Question
+
+Do insights remain trustworthy across playstyles, roles, and skill levels?
+
+### Scope
+
+- Threshold tuning
+- Confidence calibration
+- Archetype refinement
+- Edge-case detection
+- Optional expert feedback loops
+
+### Outcome
+
+Insights remain nuanced and credible as the player base grows.
+
+---
+
+## Epic 7 — Retention & Expansion (Future)
+
+### Purpose
+
+Make Rival a long-term improvement tool.
 
 ### Core Question
 
@@ -230,9 +269,9 @@ Why would users keep coming back?
 
 ### Scope
 
-- Weekly summaries
+- Historical trends
 - Improvement tracking
-- Light notifications
+- Periodic summaries
 - Multi-game groundwork
 
 ### Outcome
@@ -243,10 +282,10 @@ Rival becomes part of a player’s long-term improvement loop.
 
 ## Release Strategy
 
-- Initial release will be a **Closed Beta**
-- Beta explicitly labeled across UI
-- Feedback and disagreement are expected and encouraged
-- Exit from beta defined by insight accuracy and trust metrics
+- Initial release is a **Closed Beta**
+- Beta explicitly labeled across the UI
+- Disagreement and feedback are expected
+- Exit from beta defined by insight trust and accuracy
 
 ---
 
@@ -254,5 +293,6 @@ Rival becomes part of a player’s long-term improvement loop.
 
 - No epic depends on a future epic to be useful
 - Interpretation must always be explainable
-- Opt-in and user consent are non-negotiable
+- Opt-in and consent are non-negotiable
+- UI never invents meaning
 - Small, strong releases over speculative scale
