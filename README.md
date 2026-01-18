@@ -12,6 +12,7 @@ This project is currently in early development and focuses on building a complia
 Rival does not display stats for players who have not opted in.
 
 A player must:
+
 1. Explicitly connect their Riot account
 2. Grant permission via Riot authentication
 
@@ -36,6 +37,7 @@ Players can disconnect their Riot account at any time, after which their data wi
 ## Getting Started (Local Development)
 
 ### Prerequisites
+
 - Node.js 18 or newer (latest LTS recommended)
 - npm
 
@@ -51,11 +53,13 @@ Create a file named `.env.local` in the project root with the following contents
 `DATABASE_URL` = postgresql://user:password@localhost:5432/rival
 
 ### Riot RSO
+
 - `RIOT_CLIENT_ID` = Riot application client ID
 - `RIOT_CLIENT_SECRET` = Riot application client secret
 - `RIOT_REDIRECT_URI` = OAuth callback URL
 
 ### Development
+
 - `MOCK_RIOT` = Enables mocked Riot authentication for local development
 
 Do not commit `.env.local`. It is ignored by git.
@@ -63,11 +67,11 @@ Do not commit `.env.local`. It is ignored by git.
 ### Local Database (Postgres via Docker)
 
 docker run --name rival-postgres \
-  -e POSTGRES_USER=rival \
-  -e POSTGRES_PASSWORD=rival \
-  -e POSTGRES_DB=rival \
-  -p 5432:5432 \
-  -d postgres:16
+ -e POSTGRES_USER=rival \
+ -e POSTGRES_PASSWORD=rival \
+ -e POSTGRES_DB=rival \
+ -p 5432:5432 \
+ -d postgres:16
 
 ### Apply schema:
 
@@ -100,6 +104,7 @@ http://localhost:3000
 Riot Sign On (RSO) is required before production API access.
 
 Current status:
+
 - Session handling is implemented
 - Login flow is stubbed
 - No Riot API calls are made yet
@@ -114,6 +119,46 @@ The project is intentionally structured to make RSO integration straightforward 
 - Global styling is handled via Tailwind CSS and CSS variables
 - Dark mode is enabled by default
 - Database is the source of truth for opt-in enforcement
+
+---
+
+# Internal Endpoints (Dev Only)
+
+These endpoints are for local development and testing only.
+
+## Security Rules
+
+- Requires header: x-internal-key
+- Disabled in production by default
+
+## Env Vars (.env.local)
+
+INTERNAL_API_KEY=change-me-local
+
+## Endpoints
+
+### Sync fixture to DB
+
+POST /api/internal/sync/fixture
+
+Example:
+curl -Method POST `  -Uri "http://localhost:3000/api/internal/sync/fixture"`
+-Headers @{ "x-internal-key" = "change-me-local"; "Content-Type" = "application/json" } `
+-Body '{ "fixtureName": "unorthodox" }'
+
+### Recompute payload from DB and persist snapshot
+
+POST /api/internal/recompute/:puuid?limit=20
+
+Example:
+curl -Method POST `  -Uri "http://localhost:3000/api/internal/recompute/fixture-puuid-unorthodox?limit=20"`
+-Headers @{ "x-internal-key" = "change-me-local"; "Content-Type" = "application/json" } `
+-Body '{}'
+
+## Production Escape Hatch (Not Recommended)
+
+If you explicitly need internal endpoints in production:
+ALLOW_INTERNAL_ENDPOINTS_IN_PROD=true
 
 ---
 
