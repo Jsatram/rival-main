@@ -6,6 +6,7 @@ import { ArchetypePanel } from "@/components/profile/archetypePanel";
 import { RoleFitPanel } from "@/components/profile/roleFitPanel";
 import { UnorthodoxPanel } from "@/components/profile/unorthodoxPanel";
 import { DataQualityPanel } from "@/components/profile/dataQualityPanel";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -61,13 +62,23 @@ export default async function PlayerProfilePage({ params }: PageProps) {
             <div className="text-xl font-semibold break-all">{puuid}</div>
           </div>
 
-          <span
-            className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs ${confidencePillClass(
-              confLevel,
-            )}`}
-          >
-            {confLevel} confidence
-          </span>
+          {/* Actions */}
+          <div className="flex items-center gap-3">
+            <Link
+              href={`/player/${puuid}/matches`}
+              className="text-sm text-muted-foreground hover:text-foreground"
+            >
+              Matches
+            </Link>
+
+            <span
+              className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs ${confidencePillClass(
+                confLevel,
+              )}`}
+            >
+              {confLevel} confidence
+            </span>
+          </div>
         </div>
 
         <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">

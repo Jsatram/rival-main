@@ -3,18 +3,18 @@ import { pool } from "@/lib/db";
 
 type MatchListItem = {
   matchId: string | null;
-  startedAt: string | null; // maps from played_at
+  startedAt: string | null;
   queue: string | null;
   map: string | null;
   agent: string | null;
-  result: "win" | "loss" | "draw" | null; // not in DB yet -> null
+  result: "win" | "loss" | "draw" | null; // not in match_index yet
   stats: {
     kills: number | null;
     deaths: number | null;
     assists: number | null;
     acs: number | null;
   } | null;
-  includedInSnapshot: boolean; // not in DB yet -> false (Epic 4.4 will compute)
+  includedInSnapshot: boolean;
 };
 
 function clampLimit(raw: string | null): number {
@@ -43,7 +43,56 @@ export async function GET(
       return NextResponse.json({ puuid, matches: [] }, { status: 200 });
     }
 
-    // 2) Read from match_index only (schema-accurate)
+    // 2) Fetch latest snapshot metadata (read-only)
+    const snapRes = await pool.query(
+      `
+      SELECT window_matches, last_computed_at
+      FROM player_profile_snapshots
+      WHERE puuid = $1
+      ORDER BY last_computed_at DESC NULLS LAST, created_at DESC
+      LIMIT 1
+      `,
+      [puuid],
+    );
+
+    let windowMatches: number | null = null;
+    let lastComputedAt: Date | null = null;
+
+    if (snapRes.rows.length > 0) {
+      const row = snapRes.rows[0];
+
+      if (typeof row.window_matches === "number") {
+        windowMatches = row.window_matches;
+      }
+
+      if (row.last_computed_at) {
+        lastComputedAt = new Date(row.last_computed_at);
+      }
+    }
+
+    // 3) Compute snapshot window match_ids from match_index
+    // Rule: newest -> oldest, played_at <= last_computed_at, limit window_matches
+    const includedIds = new Set<string>();
+
+    if (windowMatches && windowMatches > 0 && lastComputedAt) {
+      const winRes = await pool.query(
+        `
+        SELECT match_id
+        FROM match_index
+        WHERE puuid = $1
+          AND played_at <= $2
+        ORDER BY played_at DESC NULLS LAST
+        LIMIT $3
+        `,
+        [puuid, lastComputedAt.toISOString(), windowMatches],
+      );
+
+      for (const r of winRes.rows) {
+        if (r.match_id) includedIds.add(String(r.match_id));
+      }
+    }
+
+    // 4) Return recent matches (API output unchanged)
     const res = await pool.query(
       `
       SELECT
@@ -71,13 +120,15 @@ export async function GET(
         r.assists != null ||
         r.acs != null;
 
+      const matchId = r.match_id ?? null;
+
       return {
-        matchId: r.match_id ?? null,
+        matchId,
         startedAt: r.played_at ? new Date(r.played_at).toISOString() : null,
         queue: r.queue ?? null,
         map: r.map ?? null,
         agent: r.agent ?? null,
-        result: null, // not available yet
+        result: null,
         stats: hasAnyStats
           ? {
               kills: r.kills ?? null,
@@ -86,12 +137,13 @@ export async function GET(
               acs: r.acs ?? null,
             }
           : null,
-        includedInSnapshot: false, // real alignment comes in Epic 4.4
+        includedInSnapshot: matchId ? includedIds.has(matchId) : false,
       };
     });
 
     return NextResponse.json({ puuid, matches }, { status: 200 });
-  } catch {
+  } catch (e) {
+    console.error("[api/matches] error", e);
     return NextResponse.json(
       { puuid, matches: [], error: "internal_error" },
       { status: 500 },

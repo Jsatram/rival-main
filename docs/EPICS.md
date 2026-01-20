@@ -172,7 +172,7 @@ A profile users can trust, understand, and confidently share.
 
 ---
 
-## Epic 4 — Match History & Match Detail (Defined Before Ingestion) 🧭
+## Epic 4 — Match History & Match Detail (Defined Before Ingestion) ✅
 
 ### Purpose
 
@@ -189,17 +189,21 @@ Can users explore their match history in a way that validates and complements an
 - Rendering of available match index data
 - Alignment messaging with analysis snapshot window
 - Match detail route (stub, structure only)
-- Navigation between profile and matches
+- Navigation between profile, matches, and match detail
 
 ### Explicit Non-Goals
 
 - No deep per-round breakdowns
 - No advanced filters or charts
 - No Riot ingestion logic in UI
+- No recomputation or refresh triggers
 
 ### Outcome
 
-Users can see _what data_ their insights are based on, building trust and clarity.
+Users can see _what data_ their insights are based on, which matches were used
+for analysis, and navigate match history confidently — without requiring ingestion.
+
+Epic 4 is **definition-complete** and **ingestion-ready**.
 
 ---
 
