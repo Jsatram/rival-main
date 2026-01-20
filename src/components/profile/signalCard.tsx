@@ -45,7 +45,7 @@ export function SignalCard({ signal }: { signal: SignalSummary }) {
     <div className="rounded-xl border p-5 space-y-3">
       <div className="flex items-start justify-between gap-4">
         <div className="space-y-1">
-          <div className="text-sm text-muted-foreground">Signal</div>
+          {/* <div className="text-sm text-muted-foreground">Signal</div> */}
           <div className="text-lg font-semibold">{signal.label}</div>
         </div>
         <ConfidenceBadge level={signal.confidence} />

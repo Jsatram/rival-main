@@ -29,7 +29,7 @@ Players can disconnect their Riot account at any time, after which their data wi
 - Tailwind CSS
 - shadcn/ui
 - iron-session (session management)
-- MongoDB (planned)
+- PostgreSQL (local via Docker)
 - Riot Games API (pending re-approval and RSO)
 
 ---
@@ -93,9 +93,17 @@ http://localhost:3000
 - /search — Player search (stub)
 - /login — Riot account opt-in explanation
 - /account — Connected and disconnected account states
-- /api/auth/riot/start
-- /api/auth/riot/callback
-- /api/auth/riot/disconnect
+
+### Player Experience
+
+- /player/[puuid] — Player profile (analysis snapshot)
+- /player/[puuid]/matches — Match history (read-only)
+- /match/[matchId] — Match detail (stub)
+
+### APIs
+
+- /api/profile/[puuid] — Snapshot-based profile payload
+- /api/matches/[puuid] — Read-only match history
 
 ---
 
